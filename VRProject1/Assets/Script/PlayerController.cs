@@ -13,13 +13,14 @@ public class PlayerController : MonoBehaviour
 {
     public float _threshold = 0.27f;
     [Header("指パッチン")] public bool on_fingerSnap = false;
-    [Header("�w�p�b�`��")]public GameObject prefab_FingerSnap;
+    [Header("指パッチンで出てくるオブジェクト")]public GameObject prefab_FingerSnap;
 
     [Header("手銃")] public bool on_gun = false;
-    [Header("�ˎ苗��")] public float bulletRange = 100f;
-    [Header("�e��")] public AudioClip bulletSE;
+    [Header("射程距離")] public float bulletRange = 100f;
 
-    private AudioSource audioSource;
+    public AudioClip gunSE;
+
+    public AudioSource audioSource;
 
     [SerializeField]
     private OVRSkeleton _oVRSkeleton; //�E��A�������͍���� Bone���
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+
         // �n���h�g���b�L���O�����Ă��Ȃ��A�܂��̓n���h�g���b�L���O�̐M�p�x���Ⴏ��Ό�쓮��h�����߂ɖ����ɂ���
         if (!_oVRHand.IsTracked || _oVRHand.HandConfidence.Equals(OVRHand.TrackingConfidence.Low)) return;
 
@@ -47,7 +49,7 @@ public class PlayerController : MonoBehaviour
         var isRingStraight_old = IsStraight(0.27f, OVRSkeleton.BoneId.Hand_Ring1, OVRSkeleton.BoneId.Hand_Ring2, OVRSkeleton.BoneId.Hand_Ring3, OVRSkeleton.BoneId.Hand_RingTip);
         var isPinkyStraight_old = IsStraight(0.27f, OVRSkeleton.BoneId.Hand_Pinky0, OVRSkeleton.BoneId.Hand_Pinky1, OVRSkeleton.BoneId.Hand_Pinky2, OVRSkeleton.BoneId.Hand_Pinky3, OVRSkeleton.BoneId.Hand_PinkyTip);
         
-        audioSource = GetComponent<AudioSource>();
+        audioSource = this.gameObject.GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -100,7 +102,6 @@ public class PlayerController : MonoBehaviour
         {
             if (_isMiddleStraight_old && !isMiddleStraight && isIndexStraight)
             {
-                audioSource.PlayOneShot(bulletSE);
                 Instantiate(
                     prefab_FingerSnap, //�N���[������v���n�u
                     position: _oVRSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position, //�����ꏊ�F�l�����w�̐�
@@ -113,10 +114,8 @@ public class PlayerController : MonoBehaviour
         {
             if(_isThumbStraight_old && !isThumbStraight && isIndexStraight && !isMiddleStraight && !isRingStraight && !isPinkyStraight)
             {
-                audioSource.PlayOneShot(bulletSE);
-
+                audioSource.PlayOneShot(gunSE);
                 Debug.DrawRay(_oVRSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position, indexDirection, UnityEngine.Color.red,100f, false);
-                Debug.Log("aaa");
                 if (Physics.Raycast(_oVRSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position, indexDirection, bulletRange))
                 {
 
