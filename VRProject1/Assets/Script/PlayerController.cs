@@ -1,14 +1,22 @@
 using Oculus.Platform.Models;
+using OVR;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using static OVRPlugin;
+using static UnityEngine.UI.Image;
 
 public class PlayerController : MonoBehaviour
 {
     public float _threshold = 0.27f;
     [Header("指パッチン")]public GameObject prefab_FingerSnap;
+    [Header("射手距離")] public float bulletRange = 100f;
+    [Header("銃音")] public AudioClip bulletSE;
+
+    private AudioSource audioSource;
 
     [SerializeField]
     private OVRSkeleton _oVRSkeleton; //右手、もしくは左手の Bone情報
@@ -33,7 +41,7 @@ public class PlayerController : MonoBehaviour
         var isMiddleStraight_old = IsStraight(0.8f, OVRSkeleton.BoneId.Hand_Middle1, OVRSkeleton.BoneId.Hand_Middle2, OVRSkeleton.BoneId.Hand_Middle3, OVRSkeleton.BoneId.Hand_MiddleTip);
         var isRingStraight_old = IsStraight(0.8f, OVRSkeleton.BoneId.Hand_Ring1, OVRSkeleton.BoneId.Hand_Ring2, OVRSkeleton.BoneId.Hand_Ring3, OVRSkeleton.BoneId.Hand_RingTip);
         var isPinkyStraight_old = IsStraight(0.8f, OVRSkeleton.BoneId.Hand_Pinky0, OVRSkeleton.BoneId.Hand_Pinky1, OVRSkeleton.BoneId.Hand_Pinky2, OVRSkeleton.BoneId.Hand_Pinky3, OVRSkeleton.BoneId.Hand_PinkyTip);
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -94,11 +102,15 @@ public class PlayerController : MonoBehaviour
 
         if(_isThumbStraight_old && !isThumbStraight && isIndexStraight && !isMiddleStraight && !isRingStraight && !isPinkyStraight)
         {
-            Instantiate(
-                prefab_FingerSnap, //クローンするプレハブ
-                position: _oVRSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position, //生成場所：人差し指の先
-                rotation: Quaternion.identity //回転なし
-            );
+            audioSource.PlayOneShot(bulletSE);
+
+            Debug.DrawRay(_oVRSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position, indexDirection, UnityEngine.Color.red,10f, false);
+
+            if (Physics.Raycast(_oVRSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position, indexDirection, bulletRange))
+            {
+
+            }
+            
         }
 
 

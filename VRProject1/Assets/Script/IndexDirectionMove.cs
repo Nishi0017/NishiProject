@@ -22,12 +22,16 @@ public class IndexDirectionMove : MonoBehaviour
         controller = controllerObj.GetComponent<PlayerController>();
     
         rb = controller.GetComponent<Rigidbody>();
+
+        Vector3 IndexDirection = controller.indexDirection;
+        rb.AddForce(IndexDirection * bulletSpeed, ForceMode.Impulse);
+
     }
+
 
     void Update()
     {
-        Vector3 IndexDirection = controller.indexDirection;
-        rb.AddForce(IndexDirection * bulletSpeed, ForceMode.Impulse);
+
 
     }
 }
