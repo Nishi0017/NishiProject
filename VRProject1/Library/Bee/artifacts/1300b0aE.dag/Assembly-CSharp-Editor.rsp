@@ -424,8 +424,6 @@
 -r:"Library/Bee/artifacts/1300b0aE.dag/VoiceSDK.Dictation.Runtime.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/VoiceSDK.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/VoiceSDK.Runtime.ref.dll"
-"Assets/Editor/NamedArrayAttribute.cs"
-"Assets/Editor/NamedArrayDrawer.cs"
 "Assets/JMO Assets/Cartoon FX Easy Editor/Editor/CFXEasyEditor.cs"
 "Assets/JMO Assets/WarFX/Editor/CFX_SpawnSystemEditor.cs"
 "Assets/Oculus/SampleFramework/Core/Firebase/Editor/FirebaseEnabler.cs"

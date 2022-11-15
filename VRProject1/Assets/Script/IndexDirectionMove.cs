@@ -4,24 +4,18 @@ using UnityEngine;
 
 public class IndexDirectionMove : MonoBehaviour
 {
-    public bool onROffL = true;
-    private char RorL = 'R';
-    public GameObject controllerObj;
-    public PlayerController controller;
+    private GameObject controllerObj;
+    private PlayerController controller;
 
     public float bulletSpeed = 10;
 
     private Rigidbody rb;
     void Start()
     {
-        if (onROffL)
-            RorL = 'R';
-        else
-            RorL = 'L';
-        controllerObj = GameObject.Find("OVRCustomHandPrefab_" + RorL);
+        controllerObj = GameObject.Find("PlayerControllerL");
         controller = controllerObj.GetComponent<PlayerController>();
     
-        rb = controller.GetComponent<Rigidbody>();
+        rb = this.GetComponent<Rigidbody>();
 
         Vector3 IndexDirection = controller.indexDirection;
         rb.AddForce(IndexDirection * bulletSpeed, ForceMode.Impulse);

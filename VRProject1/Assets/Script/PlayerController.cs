@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
     [Header("手銃")] public bool on_gun = false;
     [Header("射程距離")] public float bulletRange = 100f;
 
-    public AudioClip gunSE;
+    [Header("サンダー")] public AudioClip thunderSE;
+    [Header("銃弾音")]public AudioClip gunSE;
 
     public AudioSource audioSource;
 
@@ -102,6 +103,12 @@ public class PlayerController : MonoBehaviour
         {
             if (_isMiddleStraight_old && !isMiddleStraight && isIndexStraight)
             {
+                audioSource.PlayOneShot(thunderSE);
+                // Instantiate(
+                //     prefab_FingerSnap, //�N���[������v���n�u
+                //     position: _oVRSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position, //�����ꏊ�F�l�����w�̐�
+                //     rotation: Quaternion.identity //��]�Ȃ�
+                // );
                 Instantiate(
                     prefab_FingerSnap, //�N���[������v���n�u
                     position: _oVRSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position, //�����ꏊ�F�l�����w�̐�
