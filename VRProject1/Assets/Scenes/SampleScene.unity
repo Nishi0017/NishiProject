@@ -330,10 +330,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _threshold: 0.27
+  on_fingerSnap: 1
   prefab_FingerSnap: {fileID: 525564691308900985, guid: 4bfb608d51dd27749bba32d0198d3593,
     type: 3}
+  on_gun: 0
   bulletRange: 100
-  bulletSE: {fileID: 0}
+  bulletSE: {fileID: 8300000, guid: 8e1116667ed53f747b961e30225ee319, type: 3}
   _oVRSkeleton: {fileID: 2026177026}
   _oVRHand: {fileID: 2026177027}
   indexDirection: {x: 0, y: 0, z: 0}
@@ -350,8 +352,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _threshold: 0.27
+  on_fingerSnap: 0
   prefab_FingerSnap: {fileID: 328034813865715979, guid: 813568cf6834e554cb88e36ea06ebcda,
     type: 3}
+  on_gun: 1
   bulletRange: 100
   bulletSE: {fileID: 8300000, guid: 8e1116667ed53f747b961e30225ee319, type: 3}
   _oVRSkeleton: {fileID: 540093484}
@@ -383,7 +387,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

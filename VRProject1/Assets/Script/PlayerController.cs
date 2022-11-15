@@ -12,14 +12,17 @@ using static UnityEngine.UI.Image;
 public class PlayerController : MonoBehaviour
 {
     public float _threshold = 0.27f;
-    [Header("wƒpƒbƒ`ƒ“")]public GameObject prefab_FingerSnap;
-    [Header("Ëè‹——£")] public float bulletRange = 100f;
-    [Header("e‰¹")] public AudioClip bulletSE;
+    [Header("æŒ‡ãƒ‘ãƒƒãƒãƒ³")] public bool on_fingerSnap = false;
+    [Header("ï¿½wï¿½pï¿½bï¿½`ï¿½ï¿½")]public GameObject prefab_FingerSnap;
+
+    [Header("æ‰‹éŠƒ")] public bool on_gun = false;
+    [Header("ï¿½Ëè‹—ï¿½ï¿½")] public float bulletRange = 100f;
+    [Header("ï¿½eï¿½ï¿½")] public AudioClip bulletSE;
 
     private AudioSource audioSource;
 
     [SerializeField]
-    private OVRSkeleton _oVRSkeleton; //‰EèA‚à‚µ‚­‚Í¶è‚Ì Boneî•ñ
+    private OVRSkeleton _oVRSkeleton; //ï¿½Eï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íï¿½ï¿½ï¿½ï¿½ Boneï¿½ï¿½ï¿½
     [SerializeField]
     private OVRHand _oVRHand;
 
@@ -29,30 +32,33 @@ public class PlayerController : MonoBehaviour
     private bool _isRingStraight_old;
     private bool _isPinkyStraight_old;
 
+    
+
     public Vector3 indexDirection;
 
     private void Start()
     {
-        // ƒnƒ“ƒhƒgƒ‰ƒbƒLƒ“ƒO‚ğ‚µ‚Ä‚¢‚È‚¢A‚Ü‚½‚Íƒnƒ“ƒhƒgƒ‰ƒbƒLƒ“ƒO‚ÌM—p“x‚ª’á‚¯‚ê‚ÎŒëì“®‚ğ–h‚®‚½‚ß‚É–³Œø‚É‚·‚é
+        // ï¿½nï¿½ï¿½ï¿½hï¿½gï¿½ï¿½ï¿½bï¿½Lï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½Aï¿½Ü‚ï¿½ï¿½Íƒnï¿½ï¿½ï¿½hï¿½gï¿½ï¿½ï¿½bï¿½Lï¿½ï¿½ï¿½Oï¿½ÌMï¿½pï¿½xï¿½ï¿½ï¿½á‚¯ï¿½ï¿½ÎŒï¿½ì“®ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ß‚É–ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½
         if (!_oVRHand.IsTracked || _oVRHand.HandConfidence.Equals(OVRHand.TrackingConfidence.Low)) return;
 
-        var isThumbStraight_old = IsStraight(0.8f, OVRSkeleton.BoneId.Hand_Thumb0, OVRSkeleton.BoneId.Hand_Thumb1, OVRSkeleton.BoneId.Hand_Thumb2, OVRSkeleton.BoneId.Hand_Thumb3, OVRSkeleton.BoneId.Hand_ThumbTip);
-        var isIndexStraight_old = IsStraight(0.8f, OVRSkeleton.BoneId.Hand_Index1, OVRSkeleton.BoneId.Hand_Index2, OVRSkeleton.BoneId.Hand_Index3, OVRSkeleton.BoneId.Hand_IndexTip);
-        var isMiddleStraight_old = IsStraight(0.8f, OVRSkeleton.BoneId.Hand_Middle1, OVRSkeleton.BoneId.Hand_Middle2, OVRSkeleton.BoneId.Hand_Middle3, OVRSkeleton.BoneId.Hand_MiddleTip);
-        var isRingStraight_old = IsStraight(0.8f, OVRSkeleton.BoneId.Hand_Ring1, OVRSkeleton.BoneId.Hand_Ring2, OVRSkeleton.BoneId.Hand_Ring3, OVRSkeleton.BoneId.Hand_RingTip);
-        var isPinkyStraight_old = IsStraight(0.8f, OVRSkeleton.BoneId.Hand_Pinky0, OVRSkeleton.BoneId.Hand_Pinky1, OVRSkeleton.BoneId.Hand_Pinky2, OVRSkeleton.BoneId.Hand_Pinky3, OVRSkeleton.BoneId.Hand_PinkyTip);
+        var isThumbStraight_old = IsStraight(0.27f, OVRSkeleton.BoneId.Hand_Thumb0, OVRSkeleton.BoneId.Hand_Thumb1, OVRSkeleton.BoneId.Hand_Thumb2, OVRSkeleton.BoneId.Hand_Thumb3, OVRSkeleton.BoneId.Hand_ThumbTip);
+        var isIndexStraight_old = IsStraight(0.27f, OVRSkeleton.BoneId.Hand_Index1, OVRSkeleton.BoneId.Hand_Index2, OVRSkeleton.BoneId.Hand_Index3, OVRSkeleton.BoneId.Hand_IndexTip);
+        var isMiddleStraight_old = IsStraight(0.27f, OVRSkeleton.BoneId.Hand_Middle1, OVRSkeleton.BoneId.Hand_Middle2, OVRSkeleton.BoneId.Hand_Middle3, OVRSkeleton.BoneId.Hand_MiddleTip);
+        var isRingStraight_old = IsStraight(0.27f, OVRSkeleton.BoneId.Hand_Ring1, OVRSkeleton.BoneId.Hand_Ring2, OVRSkeleton.BoneId.Hand_Ring3, OVRSkeleton.BoneId.Hand_RingTip);
+        var isPinkyStraight_old = IsStraight(0.27f, OVRSkeleton.BoneId.Hand_Pinky0, OVRSkeleton.BoneId.Hand_Pinky1, OVRSkeleton.BoneId.Hand_Pinky2, OVRSkeleton.BoneId.Hand_Pinky3, OVRSkeleton.BoneId.Hand_PinkyTip);
+        
         audioSource = GetComponent<AudioSource>();
     }
 
     /// <summary>
-    /// w’è‚µ‚½‘S‚Ä‚ÌBoneID‚ª’¼üó‚É‚ ‚é‚©‚Ç‚¤‚©’²‚×‚é
+    /// ï¿½wï¿½è‚µï¿½ï¿½ï¿½Sï¿½Ä‚ï¿½BoneIDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×‚ï¿½
     /// </summary>
-    /// <param name="threshold">è‡’l 1‚É‹ß‚¢‚Ù‚ÇŒµ‚µ‚¢</param>
+    /// <param name="threshold">è‡’l 1ï¿½É‹ß‚ï¿½ï¿½Ù‚ÇŒï¿½ï¿½ï¿½ï¿½ï¿½</param>
     /// <param name="boneids"></param>
     /// <returns></returns>
     private bool IsStraight(float threshold, params OVRSkeleton.BoneId[] boneids)
     {
-        if (boneids.Length < 3) return false;   //’²‚×‚æ‚¤‚ª‚È‚¢
+        if (boneids.Length < 3) return false;   //ï¿½ï¿½ï¿½×‚æ‚¤ï¿½ï¿½ï¿½È‚ï¿½
         Vector3? oldVec = null;
         var dot = 1.0f;
         for (var index = 0; index < boneids.Length - 1; index++)
@@ -60,24 +66,24 @@ public class PlayerController : MonoBehaviour
             var v = (_oVRSkeleton.Bones[(int)boneids[index + 1]].Transform.position - _oVRSkeleton.Bones[(int)boneids[index]].Transform.position).normalized;
             if (oldVec.HasValue)
             {
-                dot *= Vector3.Dot(v, oldVec.Value); //“àÏ‚Ì’l‚ğ‘æ‚µ‚Ä‚¢‚­
+                dot *= Vector3.Dot(v, oldVec.Value); //ï¿½ï¿½ï¿½Ï‚Ì’lï¿½ğ‘æ‚µï¿½Ä‚ï¿½ï¿½ï¿½
             }
-            oldVec = v;//‚Ğ‚Æ‚Â‘O‚ÌwƒxƒNƒgƒ‹
+            oldVec = v;//ï¿½Ğ‚Æ‚Â‘Oï¿½Ìwï¿½xï¿½Nï¿½gï¿½ï¿½
         }
-        return dot >= threshold; //w’è‚µ‚½BoneID‚Ì“àÏ‚Ì‘æ‚ªè‡’l‚ğ’´‚¦‚Ä‚¢‚½‚ç’¼ü‚Æ‚İ‚È‚·
+        return dot >= threshold; //ï¿½wï¿½è‚µï¿½ï¿½BoneIDï¿½Ì“ï¿½ï¿½Ï‚Ì‘ï¿½ï¿½æ‚ªè‡’lï¿½ğ’´‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ç’¼ï¿½ï¿½ï¿½Æ‚İ‚È‚ï¿½
     
     }
 
     private void Update()
     {
-        // ƒnƒ“ƒhƒgƒ‰ƒbƒLƒ“ƒO‚ğ‚µ‚Ä‚¢‚È‚¢A‚Ü‚½‚Íƒnƒ“ƒhƒgƒ‰ƒbƒLƒ“ƒO‚ÌM—p“x‚ª’á‚¯‚ê‚ÎŒëì“®‚ğ–h‚®‚½‚ß‚É–³Œø‚É‚·‚é
+        // ï¿½nï¿½ï¿½ï¿½hï¿½gï¿½ï¿½ï¿½bï¿½Lï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½Aï¿½Ü‚ï¿½ï¿½Íƒnï¿½ï¿½ï¿½hï¿½gï¿½ï¿½ï¿½bï¿½Lï¿½ï¿½ï¿½Oï¿½ÌMï¿½pï¿½xï¿½ï¿½ï¿½á‚¯ï¿½ï¿½ÎŒï¿½ì“®ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ß‚É–ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½
         if (!_oVRHand.IsTracked || _oVRHand.HandConfidence.Equals(OVRHand.TrackingConfidence.Low)) return;
 
-        var isThumbStraight = IsStraight(0.8f, OVRSkeleton.BoneId.Hand_Thumb0, OVRSkeleton.BoneId.Hand_Thumb1, OVRSkeleton.BoneId.Hand_Thumb2, OVRSkeleton.BoneId.Hand_Thumb3, OVRSkeleton.BoneId.Hand_ThumbTip);
-        var isIndexStraight = IsStraight(0.8f, OVRSkeleton.BoneId.Hand_Index1, OVRSkeleton.BoneId.Hand_Index2, OVRSkeleton.BoneId.Hand_Index3, OVRSkeleton.BoneId.Hand_IndexTip);
-        var isMiddleStraight = IsStraight(0.8f, OVRSkeleton.BoneId.Hand_Middle1, OVRSkeleton.BoneId.Hand_Middle2, OVRSkeleton.BoneId.Hand_Middle3, OVRSkeleton.BoneId.Hand_MiddleTip);
-        var isRingStraight = IsStraight(0.8f, OVRSkeleton.BoneId.Hand_Ring1, OVRSkeleton.BoneId.Hand_Ring2, OVRSkeleton.BoneId.Hand_Ring3, OVRSkeleton.BoneId.Hand_RingTip);
-        var isPinkyStraight = IsStraight(0.8f, OVRSkeleton.BoneId.Hand_Pinky0, OVRSkeleton.BoneId.Hand_Pinky1, OVRSkeleton.BoneId.Hand_Pinky2, OVRSkeleton.BoneId.Hand_Pinky3, OVRSkeleton.BoneId.Hand_PinkyTip);
+        var isThumbStraight = IsStraight(0.27f, OVRSkeleton.BoneId.Hand_Thumb0, OVRSkeleton.BoneId.Hand_Thumb1, OVRSkeleton.BoneId.Hand_Thumb2, OVRSkeleton.BoneId.Hand_Thumb3, OVRSkeleton.BoneId.Hand_ThumbTip);
+        var isIndexStraight = IsStraight(0.27f, OVRSkeleton.BoneId.Hand_Index1, OVRSkeleton.BoneId.Hand_Index2, OVRSkeleton.BoneId.Hand_Index3, OVRSkeleton.BoneId.Hand_IndexTip);
+        var isMiddleStraight = IsStraight(0.27f, OVRSkeleton.BoneId.Hand_Middle1, OVRSkeleton.BoneId.Hand_Middle2, OVRSkeleton.BoneId.Hand_Middle3, OVRSkeleton.BoneId.Hand_MiddleTip);
+        var isRingStraight = IsStraight(0.27f, OVRSkeleton.BoneId.Hand_Ring1, OVRSkeleton.BoneId.Hand_Ring2, OVRSkeleton.BoneId.Hand_Ring3, OVRSkeleton.BoneId.Hand_RingTip);
+        var isPinkyStraight = IsStraight(0.27f, OVRSkeleton.BoneId.Hand_Pinky0, OVRSkeleton.BoneId.Hand_Pinky1, OVRSkeleton.BoneId.Hand_Pinky2, OVRSkeleton.BoneId.Hand_Pinky3, OVRSkeleton.BoneId.Hand_PinkyTip);
 
         var indexTipPos = _oVRSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position;
         var index1Pos = _oVRSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_Index1].Transform.position;
@@ -89,28 +95,34 @@ public class PlayerController : MonoBehaviour
         indexDirection = new Vector3(indexDirection_x, indexDirection_y, indexDirection_z);
  
 
-        //wƒpƒbƒ`ƒ“
-        if (_isMiddleStraight_old && !isMiddleStraight && isIndexStraight)
+        //ï¿½wï¿½pï¿½bï¿½`ï¿½ï¿½
+        if(on_fingerSnap)
         {
-            Instantiate(
-                prefab_FingerSnap, //ƒNƒ[ƒ“‚·‚éƒvƒŒƒnƒu
-                position: _oVRSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position, //¶¬êŠFl·‚µw‚Ìæ
-                rotation: Quaternion.identity //‰ñ“]‚È‚µ
-            );
+            if (_isMiddleStraight_old && !isMiddleStraight && isIndexStraight)
+            {
+                audioSource.PlayOneShot(bulletSE);
+                Instantiate(
+                    prefab_FingerSnap, //ï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½nï¿½u
+                    position: _oVRSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position, //ï¿½ï¿½ï¿½ï¿½ï¿½êŠï¿½Fï¿½lï¿½ï¿½ï¿½ï¿½ï¿½wï¿½Ìï¿½
+                    rotation: Quaternion.identity //ï¿½ï¿½]ï¿½È‚ï¿½
+                );
+            }
         }
 
-
-        if(_isThumbStraight_old && !isThumbStraight && isIndexStraight && !isMiddleStraight && !isRingStraight && !isPinkyStraight)
+        if(on_gun)
         {
-            audioSource.PlayOneShot(bulletSE);
-
-            Debug.DrawRay(_oVRSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position, indexDirection, UnityEngine.Color.red,10f, false);
-
-            if (Physics.Raycast(_oVRSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position, indexDirection, bulletRange))
+            if(_isThumbStraight_old && !isThumbStraight && isIndexStraight && !isMiddleStraight && !isRingStraight && !isPinkyStraight)
             {
+                audioSource.PlayOneShot(bulletSE);
 
-            }
+                Debug.DrawRay(_oVRSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position, indexDirection, UnityEngine.Color.red,100f, false);
+                Debug.Log("aaa");
+                if (Physics.Raycast(_oVRSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position, indexDirection, bulletRange))
+                {
+
+                }
             
+            }
         }
 
 
