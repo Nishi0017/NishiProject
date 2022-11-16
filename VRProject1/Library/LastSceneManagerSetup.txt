@@ -3,3 +3,7 @@ sceneSetups:
   isLoaded: 1
   isActive: 1
   isSubScene: 0
+- path: Assets/AS_Magic_Aura_Construction_Kit_FREE/Demo Scene/Aura Demo Scene FREE.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0

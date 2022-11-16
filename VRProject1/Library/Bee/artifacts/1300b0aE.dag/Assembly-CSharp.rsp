@@ -554,6 +554,8 @@
 "Assets/Oculus/SampleFramework/Usage/TouchPro/Scripts/Ui/UiVectorInspector.cs"
 "Assets/Oculus/Voice/Lib/Wit.ai/AssemblyInfo.cs"
 "Assets/Script/IndexDirectionMove.cs"
+"Assets/Script/MagicCircle.cs"
+"Assets/Script/MagicScript.cs"
 "Assets/Script/PlayerController.cs"
 "Assets/Shared/Ramps/Runtime/RampAsset.cs"
 "Assets/Shared/Scripts/AdjustTimeScale.cs"
