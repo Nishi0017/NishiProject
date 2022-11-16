@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 92819
+  controlID: 93
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 92820
+  controlID: 94
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 92793
+  controlID: 43
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -217,8 +217,8 @@ MonoBehaviour:
     y: 0
     width: 316
     height: 323.2
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -404,8 +404,8 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: -100, y: -25.599976}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: -100, y: -25.599976}
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -426,7 +426,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 24.8}
+      snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-scene-view-toolbar
@@ -602,7 +602,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 0
-      snapOffset: {x: 0, y: 24.8}
+      snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Particles
@@ -620,7 +620,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 0.081166804, y: 0.241079, z: 0.056257863}
     speed: 2
-    m_Value: {x: -0.9311371, y: -0.069994956, z: 1.7896419}
+    m_Value: {x: 0.081166804, y: 0.241079, z: 0.056257863}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -669,11 +669,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.0011893053, y: -0.75653505, z: 0.0013498776, w: 0.65397197}
     speed: 2
-    m_Value: {x: 0.0011892888, y: -0.7565245, z: 0.0013498587, w: 0.65396285}
+    m_Value: {x: -0.0011893053, y: 0.75653505, z: -0.0013498776, w: -0.65397197}
   m_Size:
     m_Target: 1.0036223
     speed: 2
-    m_Value: 8.579373
+    m_Value: 1.0036223
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -826,9 +826,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: ac740000
       m_LastClickedID: 0
-      m_ExpandedIDs: 3616ffffc01affffde35ffffe842ffffc05cffff6275ffffa080ffffce85ffff1e87ffff7e9affff1ea3ffff68b8ffff3cbbffff22c1ffff82c3ffff88c3ffffa6c3ffffb0c3ffffc0c3ffff64c6ffff6ac6ffff6ec6ffff7cc7ffff82c7ffff86c7ffff2ec9ffff4ae9ffff06ecffff52f5ffff58f5ffff76f5ffff90f5fffffefaffffda890000ee890000349f0000
+      m_ExpandedIDs: 
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -894,22 +894,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefab
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefab
+  - Assets
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\kumax\Documents\GitHub\NishiProject\VRProject1
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 211.80002}
-    m_SelectedIDs: dc750000
-    m_LastClickedID: 30172
-    m_ExpandedIDs: 000000009e750000d47500001a7700001c77000058770000627700006c770000a0770000a2770000a477000000ca9a3b
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 1a740000
+    m_LastClickedID: 29722
+    m_ExpandedIDs: 000000001a7400001c7400001e74000020740000227400002474000026740000287400002a7400002c74000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -937,7 +937,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000009e750000d47500001a7700001c77000058770000627700006c770000a0770000a2770000a477000000ca9a3b
+    m_ExpandedIDs: 000000001a7400001c7400001e74000020740000227400002474000026740000287400002a7400002c740000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
